@@ -1,4 +1,4 @@
-package husaynhakeem.io.tictactoe_mvvm;
+package husaynhakeem.io.mvvm;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,8 +8,8 @@ import android.support.test.rule.ActivityTestRule;
 import org.junit.Rule;
 import org.junit.Test;
 
-import husaynhakeem.io.tictactoe_mvvm.model.Player;
-import husaynhakeem.io.tictactoe_mvvm.view.GameActivity;
+import husaynhakeem.io.mvvm.model.Player;
+import husaynhakeem.io.mvvm.view.GameActivity;
 
 import static com.schibsted.spain.barista.BaristaAssertions.assertDisplayed;
 import static com.schibsted.spain.barista.BaristaAssertions.assertNotExist;

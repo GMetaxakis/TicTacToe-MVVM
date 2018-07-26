@@ -1,4 +1,4 @@
-package husaynhakeem.io.tictactoe_mvvm.game;
+package husaynhakeem.io.mvvm.game;
 
 
 import android.arch.core.executor.testing.InstantTaskExecutorRule;
@@ -7,9 +7,9 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
-import husaynhakeem.io.tictactoe_mvvm.model.Cell;
-import husaynhakeem.io.tictactoe_mvvm.model.Game;
-import husaynhakeem.io.tictactoe_mvvm.model.Player;
+import husaynhakeem.io.mvvm.model.Cell;
+import husaynhakeem.io.mvvm.model.Game;
+import husaynhakeem.io.mvvm.model.Player;
 
 import static org.junit.Assert.assertEquals;
 
@@ -24,15 +24,15 @@ public class GameShould {
     @Before
     public void setUp() throws Exception {
         game = new Game("Husayn", "Yasin");
-        player = game.player1;
+        player = game.getPlayer1();
     }
 
     @Test
     public void endGameIfHasThreeSameHorizontalCells() throws Exception {
         Cell cell = new Cell(player);
-        game.cells[0][0] = cell;
-        game.cells[0][1] = cell;
-        game.cells[0][2] = cell;
+        game.getCells()[0][0] = cell;
+        game.getCells()[0][1] = cell;
+        game.getCells()[0][2] = cell;
         boolean hasGameEnded = game.hasGameEnded();
         assertEquals(true, hasGameEnded);
     }
@@ -40,9 +40,9 @@ public class GameShould {
     @Test
     public void endGameIfHasThreeSameVerticalCells() throws Exception {
         Cell cell = new Cell(player);
-        game.cells[0][0] = cell;
-        game.cells[1][0] = cell;
-        game.cells[2][0] = cell;
+        game.getCells()[0][0] = cell;
+        game.getCells()[1][0] = cell;
+        game.getCells()[2][0] = cell;
         boolean hasGameEnded = game.hasGameEnded();
         assertEquals(true, hasGameEnded);
     }
@@ -50,9 +50,9 @@ public class GameShould {
     @Test
     public void endGameIfHasThreeSameDiagonalCells() throws Exception {
         Cell cell = new Cell(player);
-        game.cells[0][0] = cell;
-        game.cells[1][1] = cell;
-        game.cells[2][2] = cell;
+        game.getCells()[0][0] = cell;
+        game.getCells()[1][1] = cell;
+        game.getCells()[2][2] = cell;
         boolean hasGameEnded = game.hasGameEnded();
         assertEquals(true, hasGameEnded);
     }
@@ -69,15 +69,15 @@ public class GameShould {
         Cell cell8 = new Cell(new Player("2", "o"));
         Cell cell9 = new Cell(new Player("1", "x"));
 
-        game.cells[0][0] = cell1;
-        game.cells[0][1] = cell2;
-        game.cells[0][2] = cell3;
-        game.cells[1][0] = cell4;
-        game.cells[1][1] = cell5;
-        game.cells[1][2] = cell6;
-        game.cells[2][0] = cell7;
-        game.cells[2][1] = cell8;
-        game.cells[2][2] = cell9;
+        game.getCells()[0][0] = cell1;
+        game.getCells()[0][1] = cell2;
+        game.getCells()[0][2] = cell3;
+        game.getCells()[1][0] = cell4;
+        game.getCells()[1][1] = cell5;
+        game.getCells()[1][2] = cell6;
+        game.getCells()[2][0] = cell7;
+        game.getCells()[2][1] = cell8;
+        game.getCells()[2][2] = cell9;
 
         boolean isBoardFull = game.isBoardFull();
         assertEquals(true, isBoardFull);
@@ -85,8 +85,8 @@ public class GameShould {
 
     @Test
     public void switchFromPlayer1ToPlayer2() throws Exception {
-        game.currentPlayer = game.player1;
+        game.setCurrentPlayer(game.getPlayer1());
         game.switchPlayer();
-        assertEquals(game.player2, game.currentPlayer);
+        assertEquals(game.getPlayer2(), game.getCurrentPlayer());
     }
 }

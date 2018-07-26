@@ -1,4 +1,4 @@
-package husaynhakeem.io.tictactoe_mvvm;
+package husaynhakeem.io.mvvm;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,8 +8,8 @@ import android.support.test.rule.ActivityTestRule;
 import org.junit.Rule;
 import org.junit.Test;
 
-import husaynhakeem.io.tictactoe_mvvm.model.Player;
-import husaynhakeem.io.tictactoe_mvvm.view.GameActivity;
+import husaynhakeem.io.mvvm.model.Player;
+import husaynhakeem.io.mvvm.view.GameActivity;
 
 import static com.schibsted.spain.barista.BaristaAssertions.assertDisplayed;
 import static com.schibsted.spain.barista.BaristaClickActions.click;
@@ -37,7 +37,7 @@ public class GameActivityShould {
         click(R.id.cell_02);
 
         assertDisplayed(R.id.tv_winner);
-        assertDisplayed(player1.name);
+        assertDisplayed(player1.getName());
     }
 
     private void givenGameActivityLaunched() {
@@ -47,6 +47,6 @@ public class GameActivityShould {
 
     private void givenPlayersSet() {
         GameActivity activity = activityRule.getActivity();
-        activity.onPlayersSet(player1.name, player2.name);
+        activity.onPlayersSet(player1.getName(), player2.getName());
     }
 }

@@ -6,7 +6,7 @@
 
         <variable
             name="gameViewModel"
-            type="husaynhakeem.io.tictactoe_mvvm.viewmodel.GameViewModel" />
+            type="husaynhakeem.io.mvvm.viewmodel.GameViewModel" />
     </data>
 
     <android.support.v7.widget.GridLayout
@@ -115,5 +115,4 @@
             app:layout_rowWeight="1" />
 
     </android.support.v7.widget.GridLayout>
-
 </layout>
