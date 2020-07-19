@@ -3,35 +3,36 @@ package husaynhakeem.io.mvvm.view
 
 import android.app.Dialog
 import android.os.Bundle
-import android.support.v4.app.DialogFragment
-import android.support.v7.app.AlertDialog
+import androidx.fragment.app.DialogFragment
+import androidx.appcompat.app.AlertDialog
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.TextView
 
 import husaynhakeem.io.mvvm.R
 
-class GameEndDialog : DialogFragment() {
+class GameEndDialog : androidx.fragment.app.DialogFragment() {
 
-    private var rootView: View? = null
+    private lateinit var rootView: View
     private lateinit var activity: GameActivity
     private var winnerName: String? = null
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         initViews()
-        val alertDialog = AlertDialog.Builder(context!!)
+        return AlertDialog.Builder(rootView.context)
                 .setView(rootView)
                 .setCancelable(false)
+                .setCancelable(false)
                 .setPositiveButton(R.string.done) { _, _ -> onNewGame() }
-                .create()
-        alertDialog.setCanceledOnTouchOutside(false)
-        alertDialog.setCancelable(false)
-        return alertDialog
+                .create().apply {
+                    setCanceledOnTouchOutside(false)
+                    setCancelable(false)
+                }
     }
 
     private fun initViews() {
         rootView = LayoutInflater.from(context).inflate(R.layout.game_end_dialog, null, false)
-        (rootView?.findViewById<View>(R.id.tv_winner) as TextView?)?.text = winnerName
+        rootView.findViewById<TextView>(R.id.tv_winner).text = winnerName
     }
 
     private fun onNewGame() {

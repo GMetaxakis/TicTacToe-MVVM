@@ -1,4 +1,3 @@
 package husaynhakeem.io.mvvm.model
 
-
-class Player(var name: String, var value: String)
+data class Player(val name: String, val value: String)

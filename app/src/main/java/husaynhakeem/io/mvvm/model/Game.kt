@@ -1,7 +1,7 @@
 package husaynhakeem.io.mvvm.model
 
 
-import android.arch.lifecycle.MutableLiveData
+import androidx.lifecycle.MutableLiveData
 
 class Game(playerOne: String, playerTwo: String) {
 

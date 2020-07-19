@@ -3,10 +3,10 @@ package husaynhakeem.io.mvvm.view
 
 import android.app.Dialog
 import android.os.Bundle
-import android.support.design.widget.TextInputEditText
-import android.support.design.widget.TextInputLayout
-import android.support.v4.app.DialogFragment
-import android.support.v7.app.AlertDialog
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
+import androidx.fragment.app.DialogFragment
+import androidx.appcompat.app.AlertDialog
 import android.text.Editable
 import android.text.TextUtils
 import android.text.TextWatcher
@@ -14,7 +14,7 @@ import android.view.LayoutInflater
 import android.view.View
 import husaynhakeem.io.mvvm.R
 
-class GameBeginDialog : DialogFragment() {
+class GameBeginDialog : androidx.fragment.app.DialogFragment() {
 
     private lateinit var player1Layout: TextInputLayout
     private lateinit var player2Layout: TextInputLayout
@@ -30,21 +30,21 @@ class GameBeginDialog : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         initViews()
-        val alertDialog = AlertDialog.Builder(context!!)
+
+        return AlertDialog.Builder(rootView.context)
                 .setView(rootView)
                 .setTitle(R.string.game_dialog_title)
                 .setCancelable(false)
                 .setPositiveButton(R.string.done, null)
-                .create()
-        alertDialog.setCanceledOnTouchOutside(false)
-        alertDialog.setCancelable(false)
-        alertDialog.setOnShowListener { _ -> onDialogShow(alertDialog) }
-        return alertDialog
+                .create().apply {
+                    setCanceledOnTouchOutside(false)
+                    setCancelable(false)
+                    setOnShowListener { onDialogShow(this) }
+                }
     }
 
     private fun initViews() {
-        rootView = LayoutInflater.from(context)
-                .inflate(R.layout.game_begin_dialog, null, false)
+        rootView = LayoutInflater.from(context).inflate(R.layout.game_begin_dialog, null, false)
 
         player1Layout = rootView.findViewById(R.id.layout_player1)
         player2Layout = rootView.findViewById(R.id.layout_player2)
@@ -55,8 +55,7 @@ class GameBeginDialog : DialogFragment() {
     }
 
     private fun onDialogShow(dialog: AlertDialog) {
-        val positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE)
-        positiveButton.setOnClickListener { _ -> onDoneClicked() }
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener { onDoneClicked() }
     }
 
     private fun onDoneClicked() {

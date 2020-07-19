@@ -1,8 +1,8 @@
 package husaynhakeem.io.mvvm.viewmodel
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.ViewModel
-import android.databinding.ObservableArrayMap
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
+import androidx.databinding.ObservableArrayMap
 
 import husaynhakeem.io.mvvm.model.Cell
 import husaynhakeem.io.mvvm.model.Game
@@ -25,18 +25,17 @@ class GameViewModel : ViewModel() {
     }
 
     fun onClickedCellAt(row: Int, column: Int) {
-        game?.let {
-            it.cells?.let {
-                if (it[row][column] == null) {
-                    it[row][column] = Cell(game?.currentPlayer)
-                    cells[stringFromNumbers(row, column)] = game?.currentPlayer?.value
-                    if (game?.hasGameEnded() == true)
-                        game?.reset()
-                    else
-                        game?.switchPlayer()
-                }
-
+        game?.cells?.let {
+            if (it[row][column] == null) {
+                it[row][column] = Cell(game?.currentPlayer)
+                cells[stringFromNumbers(row, column)] = game?.currentPlayer?.value
+                if (game?.hasGameEnded() == true)
+                    game?.reset()
+                else
+                    game?.switchPlayer()
             }
+
         }
     }
 }
+
